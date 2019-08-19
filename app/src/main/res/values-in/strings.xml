@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Aplikasi Musik dan Acara TV</string>
+    <string name="read_more">Baca Lebih Banyak</string>
+
+    <string name = "title_fragment_movie">List Film</string>
+    <string name = "title_fragment_tvshow">List Acara TV</string>
 </resources>
