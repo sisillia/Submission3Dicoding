@@ -1,5 +1,7 @@
 package com.example.submissiontiga.model;
 
+import android.util.Log;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -51,6 +53,7 @@ public class MovieData {
             String overview = object.getJSONObject("overview").getString("overview");
             String poster_path = object.getJSONObject("poster_path").getString("poster_path");
             String finalPosterPath = "https://image.tmdb.org/t/p/w500"+poster_path;
+
 
             this.title = title;
             this.popularity = popularity;

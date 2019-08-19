@@ -36,11 +36,11 @@ public class ListMovieFragment extends Fragment {
         mainViewModel.getMovieData().observe(this, getMovieData);
 
         listMovieAdapter = new ListMovieAdapter();
-        listMovieAdapter.notifyDataSetChanged();
         recyclerData.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerData.setAdapter(listMovieAdapter);
         recyclerData.setHasFixedSize(true);
         mainViewModel.setListMovieData();
+        listMovieAdapter.notifyDataSetChanged();
 
         return view;
     }
@@ -48,7 +48,9 @@ public class ListMovieFragment extends Fragment {
     private Observer<ArrayList<MovieData>> getMovieData = new Observer<ArrayList<MovieData>>() {
         @Override
         public void onChanged(@Nullable ArrayList<MovieData> movieData) {
-            listMovieAdapter.setMovieData(movieData);
+            if(movieData != null){
+                listMovieAdapter.setMovieData(movieData);
+            }
         }
     };
 

@@ -24,6 +24,8 @@ public class MainViewModel extends ViewModel {
 
         String url = "https://api.themoviedb.org/3/discover/movie?api_key="+API_KEY+"&language=en-US";
 
+        Log.d("cetakURL",url);
+
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -53,6 +55,4 @@ public class MainViewModel extends ViewModel {
     public LiveData<ArrayList<MovieData>> getMovieData() {
         return listMovieData;
     }
-
-
 }
