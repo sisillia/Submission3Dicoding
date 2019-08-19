@@ -5,17 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ListDataAdapter extends RecyclerView.Adapter<ListDataAdapter.ViewHolder> {
-
-
+public class ListTvShowAdapter extends RecyclerView.Adapter<ListTvShowAdapter.ViewHolder> {
     @NonNull
     @Override
-    public ListDataAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ListTvShowAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListDataAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ListTvShowAdapter.ViewHolder viewHolder, int i) {
 
     }
 
