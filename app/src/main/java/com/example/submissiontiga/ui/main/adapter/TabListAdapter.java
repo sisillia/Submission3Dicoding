@@ -1,4 +1,4 @@
-package com.example.submissiontiga.ui.main;
+package com.example.submissiontiga.ui.main.adapter;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

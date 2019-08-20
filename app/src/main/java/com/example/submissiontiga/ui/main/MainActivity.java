@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.submissiontiga.R;
+import com.example.submissiontiga.ui.main.adapter.TabListAdapter;
+import com.example.submissiontiga.ui.main.fragment.ListMovieFragment;
+import com.example.submissiontiga.ui.main.fragment.ListTvFragment;
 
 public class MainActivity extends AppCompatActivity {
 

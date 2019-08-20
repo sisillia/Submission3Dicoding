@@ -41,16 +41,14 @@ public class TvData {
         this.poster_path = poster_path;
     }
 
-    TvData(JSONObject object){
+    public TvData(JSONObject object){
         try {
-            String name = object.getJSONObject("results").getString("name");
-            int popularity = object.getJSONObject("result").getInt("popularity");
-            String overview = object.getJSONObject("overview").getString("overview");
-            String poster_path = object.getJSONObject("poster_path").getString("poster_path");
+            String name = object.getString("name");
+            String overview = object.getString("overview");
+            String poster_path = object.getString("poster_path");
             String finalPosterPath = "https://image.tmdb.org/t/p/w500"+poster_path;
 
             this.name = name;
-            this.popularity = popularity;
             this.poster_path = finalPosterPath;
             this.overview = overview;
 
