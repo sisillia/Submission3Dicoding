@@ -21,10 +21,7 @@ public class MainViewModel extends ViewModel {
     public void setListMovieData() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<MovieData> listItems = new ArrayList<>();
-
         String url = "https://api.themoviedb.org/3/discover/movie?api_key="+API_KEY+"&language=en-US";
-
-        Log.d("cetakURL",url);
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override
@@ -32,14 +29,24 @@ public class MainViewModel extends ViewModel {
                 try {
                     String result = new String(responseBody);
                     JSONObject responseObject = new JSONObject(result);
-                    JSONArray list = responseObject.getJSONArray("list");
+                    JSONArray list = responseObject.getJSONArray("results");
+
+                    Log.d("cetakList",list.toString());
+                    Log.d("cetakList2",responseObject.toString());
+
 
                     for (int i = 0; i < list.length(); i++) {
                         JSONObject movie = list.getJSONObject(i);
                         MovieData movieData = new MovieData(movie);
+
+                        Log.d("cetakMovie",movieData.toString());
                         listItems.add(movieData);
                     }
                     listMovieData.postValue(listItems);
+
+                    Log.d("cetakListItem",listItems.toString());
+                    Log.d("cetakListItem",listMovieData.toString());
+
                 }catch (Exception e){
                     Log.d("Exception", e.getMessage());
                 }

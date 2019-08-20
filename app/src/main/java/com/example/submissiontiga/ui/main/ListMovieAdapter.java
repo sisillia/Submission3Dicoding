@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.ViewHolder> {
 
-    private ArrayList<MovieData> movieData = new ArrayList<>();
+    private ArrayList<MovieData> mData = new ArrayList<>();
 
-    public void setMovieData(ArrayList<MovieData> movieData){
-        movieData.clear();
-        movieData.addAll(movieData);
+    public void setMovieData(ArrayList<MovieData> data){
+        mData.clear();
+        mData.addAll(data);
         notifyDataSetChanged();
     }
 
@@ -34,13 +34,13 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListMovieAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.bind(movieData.get(position));
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        viewHolder.bind(mData.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return movieData.size();
+        return mData.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

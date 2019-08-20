@@ -2,9 +2,6 @@ package com.example.submissiontiga.model;
 
 import android.util.Log;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import org.json.JSONObject;
 
 public class MovieData {
@@ -48,11 +45,13 @@ public class MovieData {
 
     public MovieData(JSONObject object){
         try {
-            String title = object.getJSONObject("results").getString("title");
-            int popularity = object.getJSONObject("result").getInt("popularity");
-            String overview = object.getJSONObject("overview").getString("overview");
-            String poster_path = object.getJSONObject("poster_path").getString("poster_path");
+            String title = object.getString("title");
+            int popularity = object.getInt("popularity");
+            String overview = object.getString("overview");
+            String poster_path = object.getString("poster_path");
             String finalPosterPath = "https://image.tmdb.org/t/p/w500"+poster_path;
+
+            Log.d("cetakTitle",title);
 
 
             this.title = title;

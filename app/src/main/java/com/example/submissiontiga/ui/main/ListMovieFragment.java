@@ -30,17 +30,19 @@ public class ListMovieFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.recycler_recycler_item_tv_movie, container, false);
-        recyclerData = (RecyclerView) view.findViewById(R.id.recycler_data);
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getMovieData().observe(this, getMovieData);
 
         listMovieAdapter = new ListMovieAdapter();
+        listMovieAdapter.notifyDataSetChanged();
+
+        recyclerData = (RecyclerView) view.findViewById(R.id.recycler_data);
         recyclerData.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerData.setAdapter(listMovieAdapter);
-        recyclerData.setHasFixedSize(true);
+
+
         mainViewModel.setListMovieData();
-        listMovieAdapter.notifyDataSetChanged();
 
         return view;
     }
@@ -48,11 +50,10 @@ public class ListMovieFragment extends Fragment {
     private Observer<ArrayList<MovieData>> getMovieData = new Observer<ArrayList<MovieData>>() {
         @Override
         public void onChanged(@Nullable ArrayList<MovieData> movieData) {
-            if(movieData != null){
+            if (movieData != null){
                 listMovieAdapter.setMovieData(movieData);
             }
         }
     };
-
 
 }
