@@ -1,10 +1,12 @@
 package com.example.submissiontiga.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import org.json.JSONObject;
 
-public class MovieData {
+public class MovieData implements Parcelable {
 
     private String title;
     private int popularity;
@@ -46,7 +48,6 @@ public class MovieData {
     public MovieData(JSONObject object){
         try {
             String title = object.getString("title");
-            int popularity = object.getInt("popularity");
             String overview = object.getString("overview");
             String poster_path = object.getString("poster_path");
             String finalPosterPath = "https://image.tmdb.org/t/p/w500"+poster_path;
@@ -63,4 +64,37 @@ public class MovieData {
             e.printStackTrace();
         }
     }
+
+    public MovieData(){
+
+    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.title);
+        dest.writeString(this.poster_path);
+        dest.writeString(this.overview);
+    }
+
+    protected MovieData(Parcel in){
+        this.title =in.readString();
+        this.poster_path = in.readString();
+        this.overview = in.readString();
+    }
+
+    public static final Parcelable.Creator<MovieData> CREATOR = new Parcelable.Creator<MovieData>() {
+        @Override
+        public MovieData createFromParcel(Parcel source) {
+            return new MovieData(source);
+        }
+
+        @Override
+        public MovieData[] newArray(int size) {
+            return new MovieData[size];
+        }
+    };
 }

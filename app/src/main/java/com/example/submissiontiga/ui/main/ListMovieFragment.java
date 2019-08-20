@@ -34,7 +34,7 @@ public class ListMovieFragment extends Fragment {
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getMovieData().observe(this, getMovieData);
 
-        listMovieAdapter = new ListMovieAdapter();
+        listMovieAdapter = new ListMovieAdapter(getContext());
         listMovieAdapter.notifyDataSetChanged();
 
         recyclerData = (RecyclerView) view.findViewById(R.id.recycler_data);

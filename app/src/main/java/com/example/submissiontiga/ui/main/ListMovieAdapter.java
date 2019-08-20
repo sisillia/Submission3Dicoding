@@ -1,5 +1,7 @@
 package com.example.submissiontiga.ui.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,12 +14,19 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.submissiontiga.R;
 import com.example.submissiontiga.model.MovieData;
+import com.example.submissiontiga.ui.detail.DetailActivity;
 
 import java.util.ArrayList;
 
 public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.ViewHolder> {
 
-    private ArrayList<MovieData> mData = new ArrayList<>();
+    private ArrayList<MovieData> mData;
+    private final Context context;
+
+    public ListMovieAdapter(Context context) {
+        this.context = context;
+        mData = new ArrayList<>();
+    }
 
     public void setMovieData(ArrayList<MovieData> data){
         mData.clear();
@@ -45,7 +54,6 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
-        TextView tvYear;
         TextView tvDesc;
         ImageView imgPhoto;
         Button btnReadMore;
@@ -53,14 +61,12 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.View
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_item_name);
-            tvYear = itemView.findViewById(R.id.tv_item_year);
             imgPhoto = itemView.findViewById(R.id.img_item_photo);
             tvDesc = itemView.findViewById(R.id.longdesc_item);
             btnReadMore = itemView.findViewById(R.id.btn_read_more);
         }
-        void bind(MovieData movieData){
+        void bind(final MovieData movieData){
             tvName.setText(movieData.getTitle());
-            tvYear.setText(movieData.getPopularity());
             tvDesc.setText(movieData.getOverview());
 
             Glide.with(itemView.getContext())
@@ -70,7 +76,14 @@ public class ListMovieAdapter extends RecyclerView.Adapter<ListMovieAdapter.View
             btnReadMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    MovieData list = new MovieData();
+                    list.setTitle(movieData.getTitle());
+                    list.setOverview(movieData.getOverview());
+                    list.setPoster_path(movieData.getPoster_path());
 
+                    Intent sendData = new Intent(context, DetailActivity.class);
+                    sendData.putExtra(DetailActivity.EXTRA_DATA,list);
+                    context.startActivity(sendData);
                 }
             });
         }
